@@ -10,7 +10,7 @@ bintray {
     publish = true
     pkg {
         repo = 'releases'
-        name = 'hadoop-crypto'
+        name = 'seek-io'
         userOrg = 'palantir'
         licenses = ['Apache-2.0']
         publications = ['nebula']

@@ -22,4 +22,8 @@
             <Bug pattern="URF_UNREAD_PUBLIC_OR_PROTECTED_FIELD"/> <!-- @Rule ivars can be public and unused -->
         </Or>
     </Match>
+
+    <Match>
+        <Bug pattern="PT_FINAL_TYPE_CONSTRUCTOR,PT_FINAL_TYPE_PARAM,PT_FINAL_TYPE_RETURN,PT_EXTENDS_CONCRETE_TYPE" />
+    </Match>
 </FindBugsFilter>

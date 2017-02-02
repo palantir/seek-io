@@ -80,11 +80,19 @@ public final class InMemorySeekableDataInput implements SeekableDataInput {
 
     @Override
     public void seek(long position) throws IOException {
+        bytes.position(toInt(position));
+    }
+
+    private static int toInt(long position) {
         if (position > Integer.MAX_VALUE) {
-            throw new IllegalArgumentException(
-                    "position for InMemorySeekableInput may not exceed Integer.MAX_VALUE: " + position);
+            throw illegalPosition(position);
         }
-        bytes.position((int) position);
+        return (int) position;
+    }
+
+    private static IllegalArgumentException illegalPosition(long position) {
+        return new IllegalArgumentException(
+                "position for InMemorySeekableDataInput may not exceed Integer.MAX_VALUE: " + position);
     }
 
     @Override

@@ -83,6 +83,7 @@ public final class InMemorySeekableDataInput implements SeekableDataInput {
         bytes.position(toInt(position));
     }
 
+    /** Conversion function to assist with getting {@link #seek} to inline. */
     private static int toInt(long position) {
         if (position > Integer.MAX_VALUE) {
             throw illegalPosition(position);
@@ -90,6 +91,7 @@ public final class InMemorySeekableDataInput implements SeekableDataInput {
         return (int) position;
     }
 
+    /** String and exception construction function to assist with getting {@link #toInt} to inline. */
     private static IllegalArgumentException illegalPosition(long position) {
         return new IllegalArgumentException(
                 "position for InMemorySeekableDataInput may not exceed Integer.MAX_VALUE: " + position);

@@ -16,7 +16,9 @@
 
 package com.palantir.seekio;
 
+import java.io.EOFException;
 import java.io.IOException;
+import java.nio.BufferUnderflowException;
 import java.nio.ByteBuffer;
 
 public final class InMemorySeekableDataInput implements SeekableDataInput {
@@ -29,58 +31,102 @@ public final class InMemorySeekableDataInput implements SeekableDataInput {
 
     @Override
     public int read(byte[] buf, int offset, int length) throws IOException {
-        bytes.get(buf, offset, length);
+        try {
+            bytes.get(buf, offset, length);
+        } catch (BufferUnderflowException e) {
+            throw new EOFException();
+        }
         return length;
     }
 
     @Override
     public void readFully(byte[] buf) throws IOException {
-        bytes.get(buf);
+        try {
+            bytes.get(buf);
+        } catch (BufferUnderflowException e) {
+            throw new EOFException();
+        }
     }
 
     @Override
     public void readFully(byte[] buf, int off, int len) throws IOException {
-        bytes.get(buf, off, len);
+        try {
+            bytes.get(buf, off, len);
+        } catch (BufferUnderflowException e) {
+            throw new EOFException();
+        }
     }
 
     @Override
     public byte readByte() throws IOException {
-        return bytes.get();
+        try {
+            return bytes.get();
+        } catch (BufferUnderflowException e) {
+            throw new EOFException();
+        }
     }
 
     @Override
     public short readShort() throws IOException {
-        return bytes.getShort();
+        try {
+            return bytes.getShort();
+        } catch (BufferUnderflowException e) {
+            throw new EOFException();
+        }
     }
 
     @Override
     public char readChar() throws IOException {
-        return bytes.getChar();
+        try {
+            return bytes.getChar();
+        } catch (BufferUnderflowException e) {
+            throw new EOFException();
+        }
     }
 
     @Override
     public int readInt() throws IOException {
-        return bytes.getInt();
+        try {
+            return bytes.getInt();
+        } catch (BufferUnderflowException e) {
+            throw new EOFException();
+        }
     }
 
     @Override
     public long readLong() throws IOException {
-        return bytes.getLong();
+        try {
+            return bytes.getLong();
+        } catch (BufferUnderflowException e) {
+            throw new EOFException();
+        }
     }
 
     @Override
     public float readFloat() throws IOException {
-        return bytes.getFloat();
+        try {
+            return bytes.getFloat();
+        } catch (BufferUnderflowException e) {
+            throw new EOFException();
+        }
     }
 
     @Override
     public double readDouble() throws IOException {
-        return bytes.getDouble();
+        try {
+            return bytes.getDouble();
+        } catch (BufferUnderflowException e) {
+            throw new EOFException();
+        }
     }
 
     @Override
     public void seek(long position) throws IOException {
-        bytes.position(toInt(position));
+        try {
+            bytes.position(toInt(position));
+        } catch (BufferUnderflowException e) {
+            throw new EOFException();
+        }
     }
 
     /** Conversion function to assist with getting {@link #seek} to inline. */

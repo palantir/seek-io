@@ -31,12 +31,16 @@ public final class InMemorySeekableDataInput implements SeekableDataInput {
 
     @Override
     public int read(byte[] buf, int offset, int length) throws IOException {
-        try {
+        int remaining = bytes.remaining();
+        if (remaining == 0) {
+            return -1;
+        } else if (remaining < length) {
+            bytes.get(buf, offset, remaining);
+            return remaining;
+        } else {
             bytes.get(buf, offset, length);
-        } catch (BufferUnderflowException e) {
-            throw new EOFException();
+            return length;
         }
-        return length;
     }
 
     @Override

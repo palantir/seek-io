@@ -45,8 +45,8 @@ public final class InMemorySeekableDataInput implements SeekableDataInput {
     }
 
     @Override
-    public OptionalLong length() throws IOException {
-        return OptionalLong.of(bytes.capacity());
+    public long length() throws IOException {
+        return bytes.capacity();
     }
 
     @Override

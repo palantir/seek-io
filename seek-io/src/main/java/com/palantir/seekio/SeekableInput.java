@@ -41,4 +41,9 @@ public interface SeekableInput extends Closeable {
      */
     int read(byte[] bytes, int offset, int length) throws IOException;
 
+    /**
+     * Gets the total length of the stream.
+     * Assumed to be cheap and fast.
+     */
+    long length() throws IOException;
 }

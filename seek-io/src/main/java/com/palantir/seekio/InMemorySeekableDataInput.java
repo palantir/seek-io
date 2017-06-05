@@ -44,6 +44,11 @@ public final class InMemorySeekableDataInput implements SeekableDataInput {
     }
 
     @Override
+    public long length() throws IOException {
+        return bytes.capacity();
+    }
+
+    @Override
     public void readFully(byte[] buf) throws IOException {
         try {
             bytes.get(buf);

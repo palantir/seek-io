@@ -18,6 +18,7 @@ package com.palantir.seekio;
 
 import java.io.Closeable;
 import java.io.IOException;
+import java.util.OptionalLong;
 
 /**
  * A marker interface for seekable inputs.
@@ -41,4 +42,9 @@ public interface SeekableInput extends Closeable {
      */
     int read(byte[] bytes, int offset, int length) throws IOException;
 
+    /**
+     * Gets the total length of the stream, if efficiently computable.
+     * Assumed to be cheap and fast.
+     */
+    OptionalLong length() throws IOException;
 }

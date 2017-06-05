@@ -20,7 +20,6 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.nio.BufferUnderflowException;
 import java.nio.ByteBuffer;
-import java.util.OptionalLong;
 
 public final class InMemorySeekableDataInput implements SeekableDataInput {
 

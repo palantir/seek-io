@@ -18,7 +18,7 @@ package com.palantir.seekio;
 
 import java.io.IOException;
 
-public class SizingSeekableDataInput implements SizedSeekableDataInput {
+public final class SizingSeekableDataInput implements SizedSeekableDataInput {
     private final SeekableDataInput delegate;
     private final long streamLength;
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2016 Palantir Technologies, Inc. All rights reserved.
+ * Copyright 2017 Palantir Technologies, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,28 +16,13 @@
 
 package com.palantir.seekio;
 
-import java.io.Closeable;
 import java.io.IOException;
 
-/**
- * A marker interface for seekable inputs.
- * <p>
- * {@link #seek(long)} and {@link #getPos()} are assumed to be both cheap and fast.
- */
-public interface SeekableInput extends Closeable {
+public interface SizedSeekableDataInput extends SeekableDataInput {
 
     /**
-     * Seeks to the given offset in the stream.
+     * Gets the total length of the stream.
+     * Assumed to be cheap and fast.
      */
-    void seek(long offset) throws IOException;
-
-    /**
-     * Gets the current byte offset in the stream.
-     */
-    long getPos() throws IOException;
-
-    /**
-     * @see java.io.InputStream#read(byte[], int, int)
-     */
-    int read(byte[] bytes, int offset, int length) throws IOException;
+    long length() throws IOException;
 }

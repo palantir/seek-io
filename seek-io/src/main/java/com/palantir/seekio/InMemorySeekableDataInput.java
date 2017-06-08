@@ -23,7 +23,7 @@ import java.nio.ByteBuffer;
 
 public final class InMemorySeekableDataInput implements SizedSeekableDataInput {
 
-    private final ByteBuffer bytes;
+    private ByteBuffer bytes;
 
     public InMemorySeekableDataInput(byte[] bytes) {
         this.bytes = ByteBuffer.wrap(bytes);
@@ -158,5 +158,7 @@ public final class InMemorySeekableDataInput implements SizedSeekableDataInput {
     }
 
     @Override
-    public void close() {}
+    public void close() {
+        bytes = null;
+    }
 }

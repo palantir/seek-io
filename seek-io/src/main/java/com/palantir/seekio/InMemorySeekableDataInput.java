@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.nio.BufferUnderflowException;
 import java.nio.ByteBuffer;
 
-public final class InMemorySeekableDataInput implements SeekableDataInput {
+public final class InMemorySeekableDataInput implements SizedSeekableDataInput {
 
     private ByteBuffer bytes;
 
@@ -59,6 +59,11 @@ public final class InMemorySeekableDataInput implements SeekableDataInput {
         } catch (BufferUnderflowException e) {
             throw new EOFException();
         }
+    }
+
+    @Override
+    public long length() {
+        return bytes.capacity();
     }
 
     @Override
@@ -156,5 +161,4 @@ public final class InMemorySeekableDataInput implements SeekableDataInput {
     public void close() {
         bytes = null;
     }
-
 }
